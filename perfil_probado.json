@@ -1,0 +1,16 @@
+{
+  "audio_track": 2,
+  "threshold_db": -50,
+  "min_silence": 0.6,
+  "margin": 0.2,
+  "min_clip": 0.65,
+  "crf": 16,
+  "preset": "medium",
+  "threads": 2,
+  "aac_bitrate": "256k",
+  "individual_clips": true,
+  "ffmpeg": "../tools/ffmpeg/ffmpeg.exe",
+  "ffprobe": "../tools/ffmpeg/ffprobe.exe",
+  "preserve_other_audio": true,
+  "output_parent": ""
+}

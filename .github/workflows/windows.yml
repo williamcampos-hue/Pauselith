@@ -1,0 +1,32 @@
+name: Windows build and tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-test:
+    runs-on: windows-2025
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Build with locked dependencies
+        run: ./scripts/build.ps1 -OutputDirectory "$env:RUNNER_TEMP/KiyoCut" -CacheDirectory "$env:RUNNER_TEMP/dependency-cache" -SourceRevision "${{ github.sha }}" -DownloadDependencies
+      - name: Fast
+        run: ./scripts/test.ps1 -Suite Fast -DependenciesFrom "$env:RUNNER_TEMP/KiyoCut" -TestOutput "$env:RUNNER_TEMP/test-results"
+      - name: Full
+        run: ./scripts/test.ps1 -Suite Full -DependenciesFrom "$env:RUNNER_TEMP/KiyoCut" -TestOutput "$env:RUNNER_TEMP/test-results"
+      - name: Test summaries only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: test-summaries
+          path: |
+            ${{ runner.temp }}/test-results/*/summary.json
+            ${{ runner.temp }}/test-results/*/runner.log
+          if-no-files-found: warn
+# Prepared locally; not executed on GitHub. No binaries or releases are published.

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "pythonVersion": "3.11.9",
+  "numpyVersion": "2.4.6",
+  "ffmpegVersion": "9.0.2-essentials_build-www.gyan.dev",
+  "archives": [
+    {
+      "id": "python",
+      "file": "python-3.11.9-embed-amd64.zip",
+      "url": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-embed-amd64.zip",
+      "sha256": "009d6bf7e3b2ddca3d784fa09f90fe54336d5b60f0e0f305c37f400bf83cfd3b"
+    },
+    {
+      "id": "numpy",
+      "file": "numpy-2.4.6-cp311-cp311-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/c5/31/7fc6239c12bce7e931463251cca4426c465e1876ba3cc785402ef4dd8f4e/numpy-2.4.6-cp311-cp311-win_amd64.whl",
+      "sha256": "1e254a00cdf42b1e4d5b3d68d33af63268d41340d8885df2ab6470f2e1500147"
+    },
+    {
+      "id": "ffmpeg",
+      "file": "ffmpeg-9.0.2-essentials_build.zip",
+      "url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+      "sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba"
+    }
+  ],
+  "ffmpegEntries": [
+    {
+      "entry": "ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe",
+      "destination": "tools/ffmpeg/ffmpeg.exe"
+    },
+    {
+      "entry": "ffmpeg-9.0.2-essentials_build/bin/ffprobe.exe",
+      "destination": "tools/ffmpeg/ffprobe.exe"
+    },
+    {
+      "entry": "ffmpeg-9.0.2-essentials_build/LICENSE",
+      "destination": "tools/ffmpeg/LICENSE"
+    }
+  ],
+  "requiredBinaryHashes": {
+    "runtime/python/python.exe": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+    "tools/ffmpeg/ffmpeg.exe": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+    "tools/ffmpeg/ffprobe.exe": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52"
+  }
+}

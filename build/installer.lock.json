@@ -1,0 +1,14 @@
+{
+  "name": "Inno Setup",
+  "version": "6.7.4",
+  "url": "https://github.com/jrsoftware/issrc/releases/download/is-6_7_4/innosetup-6.7.4.exe",
+  "sha256": "a549929319f9120716677c685535ca4671e4b937b5fdc87e2585f32d8eb30e8c",
+  "verifiedAuthenticodePublisher": "Pyrsys B.V.",
+  "compilerHashes": {
+    "ISCC.exe": "f02fa0e5f237b47d7ed1edae9b991866ec94fe02af61eb6a73e94f92fe8e0604",
+    "ISCmplr.dll": "236555054ca65194c69544b4ef1d49ea345259745f5c4a2005aca7b5674e7cff",
+    "ISPP.dll": "140b2d822bf30ed8aa3fed64764b2d2b92a80e0b9aafc1b8ff3e409706b9207e"
+  },
+  "license": "licenses/INNO-SETUP.txt",
+  "note": "Build tool only. Hash recorded from the official signed download; not an independent reproducible-build attestation."
+}

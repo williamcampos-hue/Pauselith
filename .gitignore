@@ -1,0 +1,35 @@
+*
+!/.gitignore
+!/README.md
+!/perfil_probado.json
+!/app/
+!/app/*.py
+!/app/*.cs
+!/tests/
+!/tests/*.py
+!/tests/*.cs
+!/scripts/
+!/scripts/*.ps1
+!/docs/
+!/docs/*.md
+
+!/build/
+!/build/*.json
+!/LICENSE
+!/THIRD_PARTY_NOTICES.md
+!/DISTRIBUTION_STATUS.txt
+!/CONTRIBUTING.md
+!/CHANGELOG.md
+!/licenses/
+!/licenses/**
+!/packaging/
+!/packaging/*.iss
+!/docs/images/
+!/docs/images/*.jpg
+!/.github/
+!/.github/workflows/
+!/.github/workflows/*.yml
+!/.github/ISSUE_TEMPLATE/
+!/.github/ISSUE_TEMPLATE/*.md
+# Everything else remains excluded, including videos, data/, jobs/, logs/,
+# runtimes, binaries, caches, .env files, credentials and editor settings.

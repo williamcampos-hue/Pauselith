@@ -1,0 +1,10 @@
+Pauselith - Automatic Silence Remover
+
+Original project-owned code/documentation: MIT License, copyright 2026 William Campos.
+Third-party licenses remain independent. See LICENSE and THIRD_PARTY_NOTICES.md.
+
+The prepared public snapshot is source/documentation only. Runtime archives, native
+binaries and installers are not included. Local builds obtain locked dependencies
+externally. Bundled binary redistribution is NOT approved: FFmpeg corresponding
+source and Microsoft runtime obligations remain unresolved.
+Nothing has been published. Human review and express publication authorization remain.

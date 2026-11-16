@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "compiler": {
+    "relativePath": "Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+    "versionFamily": "4.8",
+    "validatedVersion": "4.8.9221.0",
+    "language": "C# 5",
+    "sources": [
+      "app/KiyoCut.cs",
+      "app/Interface.cs",
+      "app/Settings.cs"
+    ],
+    "arguments": [
+      "/nologo",
+      "/target:winexe",
+      "/platform:anycpu",
+      "/optimize+",
+      "/debug-",
+      "/langversion:5",
+      "/codepage:65001",
+      "/noconfig",
+      "/nostdlib+"
+    ]
+  },
+  "framework": {
+    "target": ".NET Framework 4.8.1",
+    "minimumRelease": 533320,
+    "references": [
+      "mscorlib.dll",
+      "System.dll",
+      "System.Core.dll",
+      "System.Windows.Forms.dll",
+      "System.Drawing.dll",
+      "System.Web.Extensions.dll"
+    ]
+  },
+  "pythonPath": [
+    "python311.zip",
+    ".",
+    "Lib/site-packages",
+    "import site"
+  ],
+  "runtimeFiles": [
+    "app/KiyoCut.cs",
+    "app/Interface.cs",
+    "app/Settings.cs",
+    "app/worker.py",
+    "app/delivery.py",
+    "app/motor_original.py",
+    "app/validation.py",
+    "perfil_probado.json"
+  ]
+}
