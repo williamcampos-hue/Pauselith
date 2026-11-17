@@ -79,6 +79,8 @@ See [build details](docs/BUILD.md), [testing](docs/TESTING.md), [usage](docs/USA
 
 The last behavior-changing revision passed Fast **38/38** and Full **50/50** locally. There are **50 distinct test methods**: Fast is the 38-method subset included in Full, so these results must not be added as 88 independent tests. A real UI run processed synthetic two-track recordings: eight seconds became approximately five seconds with three silence cuts and two confirmed audio tracks. These are fixture results, not performance claims. Selected captures show the authentic application with a neutral empty workspace and default settings so local output paths are not published.
 
+The [first GitHub Actions execution](https://github.com/williamcampos-hue/Pauselith/actions/runs/44008415513) built successfully and passed Fast **38/38**. Remote Full finished **49 passed, 1 failed**: the WinForms integration's terminal-notice visibility assertion failed on the `windows-2025` runner. This discrepancy is unresolved; the remote suite is not presented as a pass. No product changes or weakened/skipped assertions were introduced to hide it. See [validation scope](docs/VALIDATION.md).
+
 The delivered system addresses boundaries between GUI and worker processes, bounded cancellation, crash recovery, partial-success semantics, frame/audio synchronization, reproducible builds and synthetic regression testing. A finding from automated validation was that a process exiting successfully is insufficient: delivery must be validated, and missing components must remain explicit. Another was that owner-drawn controls need contrast, focus and DPI checks beyond compilation.
 
 ## Scope and publication status

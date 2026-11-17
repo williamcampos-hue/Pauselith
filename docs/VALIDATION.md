@@ -13,3 +13,16 @@ FINAL-002 changes source licensing, product/document metadata and public selecti
 Selected screenshots are authentic desktop captures of a neutral empty workspace/default settings. Private output paths, old diagnostic screenshots, runtime logs and internal sprint reports are excluded from the public snapshot. The development Git history is preserved privately; the selected snapshot receives its own independent local history.
 
 These results do not certify clean Windows, every CPU/DPI configuration or public binary redistribution. Source-only publication has been expressly authorized. GitHub Actions provides separate remote execution results; local results are not presented as a remote CI pass.
+
+## Observed GitHub Actions result
+
+[Run 44008415513](https://github.com/williamcampos-hue/Pauselith/actions/runs/44008415513), commit `c357208e1d9da3f8a6ff8ac4bca16a67cece3a3e`, executed on `windows-2025`:
+
+- Build and locked dependency preparation: passed.
+- Fast: 38 passed, no failures.
+- Full: 49 passed, 1 failed, no omissions.
+- Failure: `test_queue_cancellation_process_ownership_and_recovery`, specifically `CancellationHarness.CheckNotice` in its UX checks: `Terminal notice clipped or hidden behind a scroll viewport`.
+
+The harness logged successful real cancellation, descendant ownership, resumed export, rendered-theme contrast and earlier UX checks before this assertion. Later checks in that same integration method did not complete. The ten audiovisual validation cases and high-rate audio case passed separately. The exact cause of the host/runner discrepancy has not been established; no further UI debugging or product change belongs to this publication task.
+
+Only test summaries/logs were uploaded by CI. No application binaries, runtimes, installers or release assets were published. The subsequent documentation-only commit records this result without scheduling another unchanged audiovisual run.
