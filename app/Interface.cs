@@ -214,7 +214,9 @@ partial class MainForm {
         Visual.Inputs(this);RefreshProfile();RefreshQueue();ResizeQueueColumns();
     }
     Control BuildResults(){
-        var card=new Card{Padding=new Padding(16)};var layout=Visual.Table(1);layout.RowStyles.Add(new RowStyle(SizeType.Percent,100));layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,100));card.Controls.Add(layout);
+        // Keep fixed/auto rows from forcing a negative metrics row on small scaled desktops.
+        // The whole result remains reachable through this outer viewport.
+        var card=new Card{Padding=new Padding(16),AutoScroll=true};var layout=Visual.Table(1);layout.Dock=DockStyle.Top;layout.AutoSize=true;layout.AutoSizeMode=AutoSizeMode.GrowAndShrink;layout.MinimumSize=new Size(0,260);layout.RowStyles.Add(new RowStyle(SizeType.Percent,100));layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));layout.RowStyles.Add(new RowStyle(SizeType.Absolute,100));card.Controls.Add(layout);
         var scroll=new Panel{Dock=DockStyle.Fill,AutoScroll=true,Margin=new Padding(0)};layout.Controls.Add(scroll,0,0);
         var content=Visual.Table(1);content.Dock=DockStyle.Top;content.AutoSize=true;content.AutoSizeMode=AutoSizeMode.GrowAndShrink;scroll.Controls.Add(content);
         foreach(var h in new[]{22,36,24,104,32})content.RowStyles.Add(new RowStyle(SizeType.Absolute,h));

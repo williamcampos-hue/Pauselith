@@ -63,6 +63,10 @@ time.sleep(.5)
         with (root/"harness.log").open("wb") as log:
             result=subprocess.run([str(root/"CancellationHarness.exe"),str(long),str(short)],stdout=log,stderr=subprocess.STDOUT,timeout=90,creationflags=subprocess.CREATE_NO_WINDOW,env=harness_env)
         self.assertEqual(result.returncode,0,(root/"harness.log").read_text(encoding="utf8",errors="replace")+"\nDiagnostics: "+str(root))
+        # Keep measured visibility evidence in CI's text-only runner artifact on success too.
+        for line in (root/"harness.log").read_text(encoding="utf8",errors="replace").splitlines():
+            if line.startswith("NOTICE "):
+                print(line)
         valid=Path((root/"valid-result-path.txt").read_text())
         self.assertTrue(valid.is_file())
         run([FFMPEG,"-v","error","-xerror","-i",valid,"-map","0:v:0","-map","0:a:0","-f","null","NUL"])

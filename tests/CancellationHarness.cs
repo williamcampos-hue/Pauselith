@@ -190,6 +190,8 @@ class CancellationHarness {
             CheckNotice(form);CheckColumns(form);CheckButtons(form);
             for(int i=0;i<2;i++){form.WindowState=FormWindowState.Maximized;Application.DoEvents();CheckColumns(form);form.WindowState=FormWindowState.Normal;Application.DoEvents();CheckColumns(form);}
             job.Partial=false;job.Cancelled=true;job.Row.SubItems[1].Text="Cancelado";Call(form,"UpdateOpenButtons");Application.DoEvents();CheckNotice(form);
+            // Reproduce the runner's constrained desktop without changing the user's display.
+            form.MinimumSize=Size.Empty;form.MaximumSize=new Size(1044,788);form.Size=new Size(1022,718);
             form.Scale(new SizeF(1.5f,1.5f));Application.DoEvents();CheckNotice(form);CheckColumns(form);CheckButtons(form);
             form.Close();
         }
@@ -204,10 +206,23 @@ class CancellationHarness {
     }
     static void CheckNotice(MainForm form){
         var notice=(Label)Get(form,"resultNotice");
+        Reveal(notice);
         int needed=TextRenderer.MeasureText(notice.Text,notice.Font,new Size(Math.Max(1,notice.Width-notice.Padding.Horizontal),Int32.MaxValue),TextFormatFlags.WordBreak|TextFormatFlags.TextBoxControl).Height+notice.Padding.Vertical;
         TraceNotice(form,notice,needed);
         Assert(!notice.AutoEllipsis&&notice.Height>=needed-3,"Important notice text does not fit its wrapped height: "+notice.Height+" < "+needed);
         Assert(notice.Visible&&notice.Top>=0&&notice.Bottom<=notice.Parent.ClientSize.Height,"Terminal notice clipped or hidden behind a scroll viewport");
+        CheckViewport(notice,form);
+    }
+    static void Reveal(Control control){
+        for(Control parent=control.Parent;parent!=null;parent=parent.Parent){
+            var scroll=parent as ScrollableControl;
+            if(scroll!=null&&scroll.AutoScroll){scroll.ScrollControlIntoView(control);Application.DoEvents();}
+        }
+    }
+    static void CheckViewport(Control control,Form form){
+        var box=control.RectangleToScreen(control.ClientRectangle);
+        for(Control parent=control.Parent;parent!=null;parent=parent.Parent)
+            Assert(parent.Visible&&parent.RectangleToScreen(parent.ClientRectangle).Contains(box),"Control clipped by "+parent.GetType().Name+": "+box+" viewport="+parent.RectangleToScreen(parent.ClientRectangle));
     }
     static void TraceNotice(MainForm form,Label notice,int needed){
         var screen=Screen.FromControl(form);
@@ -241,7 +256,7 @@ class CancellationHarness {
     }
     static void CheckButtons(MainForm form) {
         foreach(string name in new[]{"start","cancel","settingsButton","chooseOutput","openVideo","openFolder"}) {
-            var button=(Button)Get(form,name);var position=Point.Empty;for(Control control=button;control!=form;control=control.Parent)position.Offset(control.Location);
+            var button=(Button)Get(form,name);Reveal(button);var position=Point.Empty;for(Control control=button;control!=form;control=control.Parent)position.Offset(control.Location);
             var rectangle=new Rectangle(position,button.ClientSize);
             Assert(rectangle.Width>20&&rectangle.Height>12&&rectangle.Left>=0&&rectangle.Top>=0&&rectangle.Right<=form.ClientSize.Width+2&&rectangle.Bottom<=form.ClientSize.Height+2,"Essential control outside client area: "+name+" "+rectangle);
         }
