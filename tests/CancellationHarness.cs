@@ -205,8 +205,20 @@ class CancellationHarness {
     static void CheckNotice(MainForm form){
         var notice=(Label)Get(form,"resultNotice");
         int needed=TextRenderer.MeasureText(notice.Text,notice.Font,new Size(Math.Max(1,notice.Width-notice.Padding.Horizontal),Int32.MaxValue),TextFormatFlags.WordBreak|TextFormatFlags.TextBoxControl).Height+notice.Padding.Vertical;
+        TraceNotice(form,notice,needed);
         Assert(!notice.AutoEllipsis&&notice.Height>=needed-3,"Important notice text does not fit its wrapped height: "+notice.Height+" < "+needed);
         Assert(notice.Visible&&notice.Top>=0&&notice.Bottom<=notice.Parent.ClientSize.Height,"Terminal notice clipped or hidden behind a scroll viewport");
+    }
+    static void TraceNotice(MainForm form,Label notice,int needed){
+        var screen=Screen.FromControl(form);
+        Console.WriteLine("NOTICE environment interactive={0} dpi={1} screen={2} work={3} state={4} bounds={5} client={6} minimum={7} needed={8}",Environment.UserInteractive,form.DeviceDpi,screen.Bounds,screen.WorkingArea,form.WindowState,form.Bounds,form.ClientSize,form.MinimumSize,needed);
+        for(Control control=notice;control!=null;control=control.Parent){
+            Console.WriteLine("NOTICE control={0} bounds={1} client={2} visible={3} dock={4} padding={5} margin={6}",control.GetType().Name,control.Bounds,control.ClientRectangle,control.Visible,control.Dock,control.Padding,control.Margin);
+            var scroll=control as ScrollableControl;
+            if(scroll!=null)Console.WriteLine("NOTICE scroll auto={0} position={1} display={2} vertical={3} horizontal={4}",scroll.AutoScroll,scroll.AutoScrollPosition,scroll.DisplayRectangle,scroll.VerticalScroll.Visible,scroll.HorizontalScroll.Visible);
+            var table=control as TableLayoutPanel;
+            if(table!=null)Console.WriteLine("NOTICE rows={0}",String.Join(",",table.GetRowHeights()));
+        }
     }
     static double Luminance(Color color){
         Func<byte,double> linear=value=>{double c=value/255.0;return c<=.04045?c/12.92:Math.Pow((c+.055)/1.055,2.4);};
