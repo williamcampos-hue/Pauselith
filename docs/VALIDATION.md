@@ -16,6 +16,8 @@ These results do not certify clean Windows, every CPU/DPI configuration or publi
 
 ## Observed GitHub Actions result
 
+Historical failure below: [CI-FIX-001](CI-FIX-001.md) subsequently identified and corrected constrained scaled-layout overflow. Corrected PR run [44014989723](https://github.com/williamcampos-hue/Pauselith/actions/runs/44014989723) passed build, Fast 38/38 and Full 50/50, with notice geometry retained in text logs.
+
 [Run 44008415513](https://github.com/williamcampos-hue/Pauselith/actions/runs/44008415513), commit `c357208e1d9da3f8a6ff8ac4bca16a67cece3a3e`, executed on `windows-2025`:
 
 - Build and locked dependency preparation: passed.
