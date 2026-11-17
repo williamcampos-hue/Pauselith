@@ -191,8 +191,10 @@ class CancellationHarness {
             for(int i=0;i<2;i++){form.WindowState=FormWindowState.Maximized;Application.DoEvents();CheckColumns(form);form.WindowState=FormWindowState.Normal;Application.DoEvents();CheckColumns(form);}
             job.Partial=false;job.Cancelled=true;job.Row.SubItems[1].Text="Cancelado";Call(form,"UpdateOpenButtons");Application.DoEvents();CheckNotice(form);
             // Reproduce the runner's constrained desktop without changing the user's display.
-            form.MinimumSize=Size.Empty;form.MaximumSize=new Size(1044,788);form.Size=new Size(1022,718);
             form.Scale(new SizeF(1.5f,1.5f));Application.DoEvents();CheckNotice(form);CheckColumns(form);CheckButtons(form);
+            // Scale also scales MaximumSize; apply the physical limit afterwards.
+            form.MinimumSize=Size.Empty;form.MaximumSize=new Size(1044,788);form.Size=form.MaximumSize;
+            Application.DoEvents();CheckNotice(form);
             form.Close();
         }
         using(var reopened=Form(destination))Assert(Program.S((Dictionary<string,object>)Get(reopened,"settings"),"output_parent")==destination,"Pasted destination did not persist");
