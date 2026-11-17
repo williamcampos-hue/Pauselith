@@ -7,4 +7,5 @@ The prepared public snapshot is source/documentation only. Runtime archives, nat
 binaries and installers are not included. Local builds obtain locked dependencies
 externally. Bundled binary redistribution is NOT approved: FFmpeg corresponding
 source and Microsoft runtime obligations remain unresolved.
-Nothing has been published. Human review and express publication authorization remain.
+The owner has authorized public source/documentation publication only.
+No executable, installer or runtime download is approved by that authorization.

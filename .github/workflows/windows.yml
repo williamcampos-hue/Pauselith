@@ -29,4 +29,4 @@ jobs:
             ${{ runner.temp }}/test-results/*/summary.json
             ${{ runner.temp }}/test-results/*/runner.log
           if-no-files-found: warn
-# Prepared locally; not executed on GitHub. No binaries or releases are published.
+# CI uploads test summaries only. No application binaries or releases are published.

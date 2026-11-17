@@ -4,7 +4,7 @@ The approved identity is **Pauselith — Automatic Silence Remover**. The owner 
 
 The first publication is source/documentation only. Prepare an independent reviewed snapshot rather than pushing private development history. Exclude internal sprint reports, personal paths/settings, logs/jobs, recordings, runtime binaries, dependency archives and build output. Inspect selected captures and planned Git history as well as the working tree; .gitignore cannot remove an already committed secret.
 
-The prepared snapshot has no remote. Human review of the exact selected contents and express authorization are required before creating a GitHub repository or pushing. Do not upload old portable/setup candidates. The Windows workflow is locally prepared and unexecuted on GitHub; no remote CI result is claimed.
+The owner has expressly authorized public publication of the selected source-only snapshot as Pauselith in the owner's personal GitHub profile. Preserve its independent public history; the private development repository is excluded. Do not upload old portable/setup candidates. Check the actual GitHub Actions execution after a push; do not infer remote success from the local baseline. The workflow uploads test summaries only, never application packages.
 
 ## Binary packages remain separate
 

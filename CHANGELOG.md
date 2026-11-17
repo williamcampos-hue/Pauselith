@@ -6,7 +6,7 @@
 - Adopts MIT for project-owned code/documentation, copyright 2026 William Campos; dependency terms remain independent.
 - Prepares a reviewed source-only portfolio snapshot with authentic dark-interface captures, automated tests and build instructions.
 - Preserves legacy executable/configuration/protocol/installer paths for compatibility.
-- Public source publication still requires human review and express authorization. Public binary redistribution remains blocked by documented third-party obligations.
+- Public source publication has been expressly authorized. Public binary redistribution remains blocked by documented third-party obligations.
 
 ## Engineering milestones
 
